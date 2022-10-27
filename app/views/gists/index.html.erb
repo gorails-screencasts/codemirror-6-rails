@@ -1,0 +1,45 @@
+
+
+
+<div class="row">
+  <div class="col-sm-6">
+    <h1>Gists</h1>
+  </div>
+
+  <div class="col-sm-6 text-end">
+  <%= link_to new_gist_path, class: 'btn btn-primary' do %>
+    Add New Gist
+  <% end %>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+    
+
+            <th>Title</th>
+            <th>Body</th>
+            
+          <th></th>
+        
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @gists.each do |gist| %>
+        <%= content_tag :tr, id: dom_id(gist), class: dom_class(gist) do %>
+          
+
+                      <td><%= gist.title %></td>
+                      <td><%= gist.body %></td>
+          
+          
+            <td><%= link_to 'Show', gist %></td>
+          
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

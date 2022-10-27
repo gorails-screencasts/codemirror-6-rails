@@ -1,0 +1,42 @@
+<%= form_with(model: gist) do |form| %>
+  <% if gist.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(gist.errors.count, "error") %> prohibited this gist from being saved:</h2>
+
+      <ul>
+      <% gist.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :title, class: 'form-label' %>
+      <%= form.text_field :title, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <%= form.label :body, class: 'form-label' %>
+    <div data-controller="codemirror" data-codemirror-doc-value="<%= form.object.body %>">
+      <div data-codemirror-target="editor"></div>
+      <%= form.hidden_field :body, class: 'form-control', data: {codemirror_target: "input"} %>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <% if gist.persisted? %>
+      <div class="float-end">
+        <%= link_to 'Destroy', gist, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if gist.persisted? %>
+      <%= link_to "Cancel", gist, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", gists_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>

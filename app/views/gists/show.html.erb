@@ -1,0 +1,18 @@
+<div class="page-header">
+  <%= link_to gists_path, class: 'btn btn-default' do %>
+    All Gists
+  <% end %>
+  <%= link_to edit_gist_path(@gist), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show gist</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Title:</dt>
+  <dd><%= @gist.title %></dd>
+  <dt>Body:</dt>
+  <dd>
+    <pre><code><%= @gist.body %></code></pre>
+  </dd>
+</dl>
