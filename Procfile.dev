@@ -1,0 +1,4 @@
+web: bundle exec rails server
+worker: bundle exec sidekiq
+js: yarn build --watch
+css: yarn build:css --watch
